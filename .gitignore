@@ -1,0 +1,21 @@
+.venv/
+__pycache__/
+*.py[cod]
+
+# Model checkpoints and local credentials/configuration
+ml/weights/*.pt
+.env
+.env.*
+!backend/.env.example
+!frontend/.env.example
+
+# Generated assessments and temporary upload storage
+outputs/
+backend/.uploads/
+*.pdf
+sample_images/
+
+# Frontend dependencies and build artifacts
+frontend/node_modules/
+frontend/dist/
+frontend/coverage/

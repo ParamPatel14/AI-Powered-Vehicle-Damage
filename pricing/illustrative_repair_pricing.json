@@ -1,0 +1,185 @@
+{
+  "pricing_version": "1.0",
+  "pricing_status": "illustrative_example_only",
+  "currency": "USD",
+  "rate_source_note": "All amounts below are invented examples for exercising the estimator. They are not market prices. Replace with verified local workshop rates and applicable taxes before any real use.",
+  "labor_rates_per_hour": {
+    "bodywork": { "low": 45.0, "high": 85.0 },
+    "paint": { "low": 40.0, "high": 80.0 },
+    "glass": { "low": 50.0, "high": 95.0 },
+    "electrical": { "low": 50.0, "high": 100.0 },
+    "tire_service": { "low": 45.0, "high": 85.0 },
+    "diagnostic": { "low": 40.0, "high": 80.0 }
+  },
+  "optional_charges": {
+    "miscellaneous": {
+      "enabled": false,
+      "description": "Optional shop supplies or disposal charge; configure only when supported by a verified shop rate.",
+      "cost_range": { "low": 0.0, "high": 0.0 }
+    },
+    "tax": {
+      "enabled": false,
+      "rate": 0.0,
+      "applies_to": ["labor", "parts", "paint_materials", "miscellaneous"],
+      "description": "Disabled until a verified jurisdiction-specific tax rate and taxable basis are supplied."
+    }
+  },
+  "repair_rules": {
+    "dent": {
+      "minor": {
+        "scenario_name": "localized dent repair and refinish scenario",
+        "action_assumption": "Assumes a repairable localized panel dent followed by refinish; image data does not establish the component or method.",
+        "labor_category": "bodywork",
+        "labor_hours": { "low": 1.0, "high": 2.0 },
+        "parts": { "applicable": false, "description": "No replacement part included in this scenario." },
+        "paint_materials": { "applicable": true, "cost_range": { "low": 25.0, "high": 70.0 } }
+      },
+      "moderate": {
+        "scenario_name": "moderate dent repair and refinish scenario",
+        "action_assumption": "Assumes repairable panel work and refinish; component, access, and repairability require inspection.",
+        "labor_category": "bodywork",
+        "labor_hours": { "low": 2.0, "high": 5.0 },
+        "parts": { "applicable": false, "description": "No replacement part included in this scenario." },
+        "paint_materials": { "applicable": true, "cost_range": { "low": 60.0, "high": 180.0 } }
+      },
+      "major": {
+        "scenario_name": "extensive dent repair and refinish scenario",
+        "action_assumption": "Assumes extensive repairable panel work and refinish; replacement or structural work is not inferred.",
+        "labor_category": "bodywork",
+        "labor_hours": { "low": 5.0, "high": 12.0 },
+        "parts": { "applicable": false, "description": "No replacement part included in this scenario." },
+        "paint_materials": { "applicable": true, "cost_range": { "low": 150.0, "high": 400.0 } }
+      }
+    },
+    "scratch": {
+      "minor": {
+        "scenario_name": "localized scratch refinish scenario",
+        "action_assumption": "Assumes a localized refinishing approach; depth and affected component are unknown.",
+        "labor_category": "paint",
+        "labor_hours": { "low": 0.5, "high": 1.5 },
+        "parts": { "applicable": false, "description": "No replacement part included in this scenario." },
+        "paint_materials": { "applicable": true, "cost_range": { "low": 20.0, "high": 60.0 } }
+      },
+      "moderate": {
+        "scenario_name": "moderate scratch refinish scenario",
+        "action_assumption": "Assumes a larger refinishing area; scratch depth and affected component are unknown.",
+        "labor_category": "paint",
+        "labor_hours": { "low": 1.5, "high": 4.0 },
+        "parts": { "applicable": false, "description": "No replacement part included in this scenario." },
+        "paint_materials": { "applicable": true, "cost_range": { "low": 60.0, "high": 180.0 } }
+      },
+      "major": {
+        "scenario_name": "extensive scratch refinish scenario",
+        "action_assumption": "Assumes extensive refinishing; panel boundaries, depth, and adjacent damage are unknown.",
+        "labor_category": "paint",
+        "labor_hours": { "low": 4.0, "high": 8.0 },
+        "parts": { "applicable": false, "description": "No replacement part included in this scenario." },
+        "paint_materials": { "applicable": true, "cost_range": { "low": 150.0, "high": 350.0 } }
+      }
+    },
+    "crack": {
+      "minor": {
+        "scenario_name": "crack inspection scenario",
+        "action_assumption": "Inspection-only allowance. A crack could involve glass or another material; no repair method is inferred.",
+        "labor_category": "diagnostic",
+        "labor_hours": { "low": 0.5, "high": 1.0 },
+        "parts": { "applicable": false, "description": "No parts; repair scope is unknown." },
+        "paint_materials": { "applicable": false, "description": "No paint; repair scope is unknown." }
+      },
+      "moderate": {
+        "scenario_name": "crack inspection scenario",
+        "action_assumption": "Inspection-only allowance. A crack could involve glass or another material; no repair method is inferred.",
+        "labor_category": "diagnostic",
+        "labor_hours": { "low": 0.75, "high": 1.5 },
+        "parts": { "applicable": false, "description": "No parts; repair scope is unknown." },
+        "paint_materials": { "applicable": false, "description": "No paint; repair scope is unknown." }
+      },
+      "major": {
+        "scenario_name": "specialist crack inspection scenario",
+        "action_assumption": "Inspection-only allowance for specialist assessment. No component or repair action is inferred.",
+        "labor_category": "diagnostic",
+        "labor_hours": { "low": 1.0, "high": 2.5 },
+        "parts": { "applicable": false, "description": "No parts; repair scope is unknown." },
+        "paint_materials": { "applicable": false, "description": "No paint; repair scope is unknown." }
+      }
+    },
+    "glass_shatter": {
+      "minor": {
+        "scenario_name": "glass specialist inspection scenario",
+        "action_assumption": "Inspection-only allowance; exact glass component and replacement need are unknown.",
+        "labor_category": "diagnostic",
+        "labor_hours": { "low": 0.5, "high": 1.0 },
+        "parts": { "applicable": false, "description": "No glass part assumed before component confirmation." },
+        "paint_materials": { "applicable": false, "description": "Not applicable to this inspection-only scenario." }
+      },
+      "moderate": {
+        "scenario_name": "glass replacement scenario",
+        "action_assumption": "Conditional replacement scenario; exact glass component, vehicle fitment, and replacement need require confirmation.",
+        "labor_category": "glass",
+        "labor_hours": { "low": 1.0, "high": 2.5 },
+        "parts": { "applicable": true, "cost_range": { "low": 120.0, "high": 500.0 }, "description": "Illustrative glass component allowance; fitment is unknown." },
+        "paint_materials": { "applicable": false, "description": "Not applicable to this scenario." }
+      },
+      "major": {
+        "scenario_name": "extensive glass replacement scenario",
+        "action_assumption": "Conditional replacement scenario; exact glass component, vehicle fitment, and replacement need require confirmation.",
+        "labor_category": "glass",
+        "labor_hours": { "low": 2.0, "high": 4.0 },
+        "parts": { "applicable": true, "cost_range": { "low": 300.0, "high": 1000.0 }, "description": "Illustrative glass component allowance; fitment is unknown." },
+        "paint_materials": { "applicable": false, "description": "Not applicable to this scenario." }
+      }
+    },
+    "lamp_broken": {
+      "minor": {
+        "scenario_name": "lamp specialist inspection scenario",
+        "action_assumption": "Inspection-only allowance; lamp assembly and repair or replacement need are unknown.",
+        "labor_category": "diagnostic",
+        "labor_hours": { "low": 0.5, "high": 1.0 },
+        "parts": { "applicable": false, "description": "No lamp part assumed before assembly confirmation." },
+        "paint_materials": { "applicable": false, "description": "Not applicable to this inspection-only scenario." }
+      },
+      "moderate": {
+        "scenario_name": "lamp assembly replacement scenario",
+        "action_assumption": "Conditional replacement scenario; exact lamp, vehicle fitment, and replacement need require confirmation.",
+        "labor_category": "electrical",
+        "labor_hours": { "low": 0.5, "high": 1.5 },
+        "parts": { "applicable": true, "cost_range": { "low": 75.0, "high": 500.0 }, "description": "Illustrative lamp assembly allowance; fitment is unknown." },
+        "paint_materials": { "applicable": false, "description": "Not applicable to this scenario." }
+      },
+      "major": {
+        "scenario_name": "lamp assembly and fitment inspection scenario",
+        "action_assumption": "Inspection and conditional assembly replacement scenario; wiring or surrounding damage is not inferred.",
+        "labor_category": "electrical",
+        "labor_hours": { "low": 1.0, "high": 3.0 },
+        "parts": { "applicable": true, "cost_range": { "low": 200.0, "high": 900.0 }, "description": "Illustrative lamp assembly allowance; fitment is unknown." },
+        "paint_materials": { "applicable": false, "description": "Not applicable to this scenario." }
+      }
+    },
+    "tire_flat": {
+      "minor": {
+        "scenario_name": "tire service inspection scenario",
+        "action_assumption": "Inspection-only allowance; tire repairability and wheel condition are unknown.",
+        "labor_category": "diagnostic",
+        "labor_hours": { "low": 0.5, "high": 1.0 },
+        "parts": { "applicable": false, "description": "No tire part assumed before repairability and size are confirmed." },
+        "paint_materials": { "applicable": false, "description": "Not applicable to this scenario." }
+      },
+      "moderate": {
+        "scenario_name": "tire service or replacement scenario",
+        "action_assumption": "Conditional tire repair or replacement allowance; tire size, condition, and wheel condition require inspection.",
+        "labor_category": "tire_service",
+        "labor_hours": { "low": 0.5, "high": 1.25 },
+        "parts": { "applicable": true, "cost_range": { "low": 80.0, "high": 350.0 }, "description": "Illustrative tire allowance; size and repairability are unknown." },
+        "paint_materials": { "applicable": false, "description": "Not applicable to this scenario." }
+      },
+      "major": {
+        "scenario_name": "tire replacement and inspection scenario",
+        "action_assumption": "Conditional tire replacement allowance; size, wheel condition, and any related damage require inspection.",
+        "labor_category": "tire_service",
+        "labor_hours": { "low": 0.75, "high": 1.5 },
+        "parts": { "applicable": true, "cost_range": { "low": 120.0, "high": 600.0 }, "description": "Illustrative tire allowance; size is unknown." },
+        "paint_materials": { "applicable": false, "description": "Not applicable to this scenario." }
+      }
+    }
+  }
+}
